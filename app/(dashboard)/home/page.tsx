@@ -1,32 +1,25 @@
-import Button from '@/components/Button';
-import Card from '@/components/Card';
-import Input from '@/components/Input';
-import Image from 'next/image';
-import union from '@/assets/union.webp';
+import Greeting from '@/components/Greeting';
+import { getUserFromCookie } from '@/lib/auth';
+import { db } from '@/lib/db';
+import { cookies } from 'next/headers';
+import Link from 'next/link';
+import { Suspense } from 'react';
 
-const Home = () => {
+export default async function Page() {
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full gap-4">
-      Home
-      <Button
-        intent="primary"
-        size="large"
-      >
-        test
-      </Button>
-      <Input
-        className=" w-80"
-        placeholder="test"
-      />
-      <Card className=" items-center justify-center flex flex-col gap-4 ">
-        Hello
-        <Image
-          className="w-20  hover:cursor-pointer"
-          alt="union"
-          src={union}
-        />
-      </Card>
+    <div className="h-full overflow-y-auto overflow-x-hidden w-1/1">
+      <div className=" h-full  items-stretch justify-center min-h-[content]">
+        <div className="flex-1 grow flex">
+          <Greeting />
+        </div>
+        <div className="flex flex-2 grow items-center flex-wrap mt-3 -m-3 ">
+          {/** projects map here */}
+          <div className="w-1/3 p-3">{/* new project here */}</div>
+        </div>
+        <div className="mt-6 flex-2 grow w-full flex">
+          <div className="w-full">{/* tasks here */}</div>
+        </div>
+      </div>
     </div>
   );
-};
-export default Home;
+}

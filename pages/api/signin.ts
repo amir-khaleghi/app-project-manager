@@ -1,4 +1,4 @@
-import { comparePassword } from '@/lib/auth';
+import { comparePassword, createJWT } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { serialize } from 'cookie';
 import { NextApiRequest } from 'next';
@@ -27,10 +27,10 @@ export default async function signin(
         })
       );
       res.status(201);
-      res.end();
+      res.json({});
     }
   } else {
     res.status(402);
-    res.end();
+    res.json({});
   }
 }

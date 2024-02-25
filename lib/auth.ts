@@ -7,9 +7,8 @@ export const hashPassword = (password) => bcrypt.hash(password, 10);
 
 /* Compare Pass --------------------- */
 
-export const comparePassword = (inputPassword, hashPassword) => {
+export const comparePassword = (inputPassword, hashPassword) =>
   bcrypt.compare(inputPassword, hashPassword);
-};
 
 /* Create JWT ----------------------- */
 export const createJWT = (user) => {
@@ -38,14 +37,25 @@ export const validateJWT = async (jwt) => {
 /* GETTING JWT From Cookies --------- */
 
 export const getUserFromCookie = async (cookies) => {
-  const jwt = cookies.get(process.env.COOKIE_NAME);
+  try {
+    const jwt = cookies.get(process.env.COOKIE_NAME);
 
-  const { id } = await validateJWT(jwt);
+    if (!jwt) {
+      console.error('JWT not found in cookies');
+      return null;
+    }
 
-  const user = await db.user.findUnique({
-    where: {
-      id,
-    },
-  });
-  return user;
+    const { id } = await validateJWT(jwt.value);
+
+    const user = await db.user.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return user;
+  } catch (error) {
+    console.error('Error retrieving user from cookie:', error);
+    return null;
+  }
 };

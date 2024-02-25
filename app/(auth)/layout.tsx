@@ -6,7 +6,7 @@ const AuthRootLayout = ({ children }) => {
   return (
     <html lang="en">
       <head />
-      <body className=" h-screen w-screen  p-6 font-sans">
+      <body className=" h-screen w-screen  font-sans  p-20 overflow-hidden">
         {/* meshes */}
         <div className="absolute -z-10 left-0 top-0  w-[1500px] h-full left-mesh bounce-left-x"></div>
         <div className="absolute  -z-10 right-0  top-0  w-[1500px] h-full right-mesh bounce-right-x"></div>

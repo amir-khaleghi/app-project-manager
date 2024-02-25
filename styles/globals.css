@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  overflow-x: hidden;
-}
-
 @layer base {
   [data-nextjs-scroll-focus-boundary] {
     display: contents;
@@ -60,11 +56,11 @@ html {
 }
 
 /* Animations ----------------------- */
-.bounce-left-x {
-  animation: bounce 15s infinite;
+.bounce-left {
+  animation: bounce-left 15s infinite;
 }
 
-@keyframes bounce {
+@keyframes bounce-left {
   0%,
   100% {
     transform: translateX(-40%);
@@ -77,14 +73,16 @@ html {
     animation-timing-function: cubic-bezier(2, 2, 2, 3);
   }
 }
-.bounce-right-x {
+
+/* ■■■■■■■■■■■■■ Bounce ■■■■■■■■■■■■■ */
+.bounce-right {
   animation: bounce-right 15s infinite;
 }
 
 @keyframes bounce-right {
   0%,
   100% {
-    transform: translateX(50%);
+    transform: translateX(60%);
 
     animation-timing-function: cubic-bezier(2, 2, 2, 3);
   }
@@ -94,8 +92,27 @@ html {
     animation-timing-function: cubic-bezier(2, 2, 2, 3);
   }
 }
+
+.bounce {
+  animation: bounce 20s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(10%);
+
+    animation-timing-function: cubic-bezier(2, 2, 2, 3);
+  }
+  50% {
+    transform: translateY(-10%);
+
+    animation-timing-function: cubic-bezier(2, 2, 2, 3);
+  }
+}
+
 .bounce-y {
-  animation: bounce-y 40s infinite;
+  animation: bounce-y 20s infinite;
 }
 
 @keyframes bounce-y {
@@ -130,11 +147,11 @@ html {
 }
 
 .spin-anim {
-  animation: spin-anim 80s linear infinite;
+  animation: spin-anim 40s linear infinite;
 }
 @keyframes spin-anim {
   from {
-    transform: rotate(10deg);
+    transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);

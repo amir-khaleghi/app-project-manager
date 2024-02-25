@@ -25,6 +25,7 @@ export default async function register(
     res.setHeader(
       'Set-Cookie',
       serialize(process.env.COOKIE_NAME, jwt, {
+        // can not access to cookies
         httpOnly: true,
         path: '/',
         maxAge: 60 * 60 * 24 * 7,
@@ -32,7 +33,10 @@ export default async function register(
     );
 
     res.status(201);
-    res.end();
+    res.json({});
+  } else {
+    res.status(402);
+    res.json({});
   }
 }
 

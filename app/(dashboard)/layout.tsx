@@ -1,47 +1,49 @@
 import '@/styles/globals.css';
 import GlassContainer from '@/components/GlassContainer';
 import Image from 'next/image';
+import shape01 from '@/assets/shape01.png';
+import shape02 from '@/assets/shape02.png';
+import Sidebar from '@/components/SideBar';
 const DashboardLayout = ({ children }) => {
   return (
     <html lang="en">
       <head />
-      <body className="h-screen w-screen flex items-center justify-center  p-20 md:p-40 relative overflow-hidden font-sans">
-        <div className="absolute -z-10 left-0 top-0  w-[1500px] h-full left-mesh bounce-left-x"></div>
+      <body className=" h-screen w-screen overflow-hidden  flex items-center justify-center  p-10 md:p-20   font-sans">
+        <div className="absolute left-0 top-0  w-[1000px] h-full left-mesh bounce-left"></div>
+        <div className="absolute w-[1000px] h-full right-mesh bounce-right"></div>
         {/* /* Triangle ----------------- */}
         <div
-          className="absolute right-30 transform -translate-x-1/2  -bottom-40  w-[400px]  spin-anim 
+          className="absolute  left-0 -bottom-40 w-[600px]  bounce
   "
         >
           <Image
-            loading="lazy"
-            src="https://ik.imagekit.io/tmhe2qeic/tr:w-600/union.webp?updatedAt=1708247691610"
+            src={shape02}
             alt="union"
-            width={2000}
-            height={2000}
+            width={1200}
+            height={1200}
+          />
+        </div>
+        <div
+          className="absolute right-40 top-0 w-[400px]  bounce-y 
+  "
+        >
+          <Image
+            src={shape01}
+            alt="union"
+            width={1200}
+            height={1200}
           />
         </div>
 
         <div
-          className="absolute hidden lg:block right-[1200px] transform -translate-x-1/2  bottom-80 w-0 h-0 spin-anim 
-  border-l-[10px] border-l-transparent
-  border-t-[200px] border-t-red-500
-  border-r-[200px] border-r-transparent"
-        ></div>
-        <div
-          className="absolute  right-40 hidden lg:block transform -translate-x-1/2  bottom-40 w-0 h-0 bounce-y 
-  border-l-[20px] border-l-transparent 
-  border-t-[300px] border-t-blue-500
-  border-r-[300px] border-r-transparent"
-        ></div>
-        <div
-          className="absolute rounded-3xl right-80 hidden lg:block transform -translate-x-1/2  top-10  w-40 h-40 bounce-y-x bg-purple-500
+          className="absolute rounded-3xl left-[800px] hidden lg:block transform -translate-x-1/2  -top-80  w-80 h-80 bounce-y-x bg-purple-500
   "
         ></div>
 
-        <GlassContainer className="w-[800px] h-[800px]">
+        <GlassContainer className="w-full h-full flex items-center justify-start gap-4 md:p-10">
+          <Sidebar />
           {children}
         </GlassContainer>
-        <div className="absolute  -z-10 right-0  top-0  w-[1500px] h-full right-mesh bounce-right-x"></div>
       </body>
     </html>
   );
