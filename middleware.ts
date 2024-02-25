@@ -41,3 +41,8 @@ export default async function middleware(req, res) {
     return NextResponse.redirect(req.nextUrl);
   }
 }
+
+/**middleware
+ * check the jwt that is created by us
+ * identifying where you are going next
+ */
