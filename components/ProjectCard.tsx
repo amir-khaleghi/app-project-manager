@@ -46,15 +46,28 @@ const ProjectCard: FC<{ project: ProjectWithTasks }> = ({ project }) => {
       </div>
       <div>
         <div className="w-full h-2 bg-violet-200 rounded-full mb-2">
-          {if(Int(progress)<=20){
-              <div
+          {progress <= 30 ? (
+            <div
+              className={clsx(
+                'h-full text-center text-xs text-white bg-red-600 rounded-full'
+              )}
+              style={{ width: `${progress}%` }}
+            ></div>
+          ) : progress > 30 && progress <= 70 ? (
+            <div
+              className={clsx(
+                'h-full text-center text-xs text-white bg-yellow-500 rounded-full'
+              )}
+              style={{ width: `${progress}%` }}
+            ></div>
+          ) : (
+            <div
               className={clsx(
                 'h-full text-center text-xs text-white bg-green-600 rounded-full'
               )}
               style={{ width: `${progress}%` }}
             ></div>
-          }}
-        
+          )}
         </div>
         <div className="text-right">
           <span className="text-sm text-gray-600 font-semibold">

@@ -51,6 +51,7 @@ const DashboardLayout = ({ children }) => {
           <Sidebar />
           {children}
         </GlassContainer>
+        <div id="modal"></div>
       </body>
     </html>
   );

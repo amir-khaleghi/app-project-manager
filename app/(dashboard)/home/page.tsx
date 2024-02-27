@@ -1,3 +1,4 @@
+import CreateProject from '@/components/CreateProject';
 import Greeting from '@/components/Greeting';
 import GreetingsSkeleton from '@/components/GreetingSkeleton';
 import ProjectCard from '@/components/ProjectCard';
@@ -11,7 +12,6 @@ import { Suspense } from 'react';
 
 /* Get Data ------------------------- */
 const getData = async () => {
-  delay(4000);
   const user = await getUserFromCookie(cookies());
   const projects = await db.project.findMany({
     where: {
@@ -49,7 +49,9 @@ export default async function Page() {
               </Link>
             </div>
           ))}
-          <div className="w-1/3 p-3">{/* new project here */}</div>
+          <div className="w-full p-3">
+            <CreateProject />
+          </div>
         </div>
         <div className="mt-6 flex-2 grow w-full flex">
           <div className="w-full">

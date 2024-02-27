@@ -33,8 +33,8 @@ const TasksList = async ({ title, tasks }) => {
   // ─── Retrun ──────────────────────────────────────────────
 
   return (
-    <Card className="p-8 m-4">
-      <div className="flex justify-between items-center">
+    <Card className="p-8 mx-4 ">
+      <div className="flex justify-between items-center gap-8">
         <div>
           <span className="text-3xl text-gray-600">{title}</span>
         </div>
