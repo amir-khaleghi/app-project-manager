@@ -64,12 +64,12 @@ const AuthForm = ({ mode }: { mode: 'register' | 'signin' }) => {
   const content = mode === 'register' ? registerContent : signinContent;
 
   return (
-    <Card>
-      <div className="w-full">
-        <div className="text-center">
-          <h2 className="text-3xl mb-2">{content.header}</h2>
-          <p className="tex-lg text-black/25">{content.subheader}</p>
-        </div>
+    <Card className="">
+      <div className="text-center bg-purple-400 h-full w-full shadow-2xl rounded-t-2xl p-4">
+        <h2 className="text-3xl mb-2 ">{content.header}</h2>
+        {/* <p className="tex-lg text-black/25">{content.subheader}</p> */}
+      </div>
+      <div className="w-full  p-8">
         <form
           onSubmit={handleSubmit}
           className="py-10 w-full"
@@ -132,15 +132,13 @@ const AuthForm = ({ mode }: { mode: 'register' | 'signin' }) => {
           </div>
           <div className="flex items-center justify-between">
             <div>
-              <span>
-                <Link
-                  prefetch
-                  href={content.linkUrl}
-                  className="text-blue-600 font-bold"
-                >
-                  {content.linkText}
-                </Link>
-              </span>
+              <Link
+                prefetch
+                href={content.linkUrl}
+                className="text-blue-600 font-bold"
+              >
+                {content.linkText}
+              </Link>
             </div>
             <div>
               <Button

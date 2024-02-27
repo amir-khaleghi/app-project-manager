@@ -18,8 +18,8 @@ const Greeting = async () => {
   // ─── Return ──────────────────────────────────────────────
 
   return (
-    <Card className="w-full py-4 relative">
-      <div className="mb-4">
+    <Card className="w-full p-4 mx-4 relative">
+      <div className="mb-4 ">
         <h1 className="text-3xl text-gray-700 font-bold mb-4">
           Hello, {user?.firstName}!
         </h1>
@@ -28,7 +28,12 @@ const Greeting = async () => {
         </h4>
       </div>
       <div>
-        <Button size="large">Today &apos Schedule</Button>
+        <Button
+          intent="secondary"
+          size="large"
+        >
+          Today Schedule
+        </Button>
       </div>
     </Card>
   );

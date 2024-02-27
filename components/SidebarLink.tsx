@@ -18,7 +18,7 @@ const SidebarLink = ({ link }) => {
   return (
     <Link
       href={link.link}
-      className="w-full flex justify-center items-center"
+      className="w-full flex justify-center items-center hover:scale-110 duration-200"
     >
       <Icon
         size={40}
