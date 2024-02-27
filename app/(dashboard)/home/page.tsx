@@ -41,7 +41,7 @@ export default async function Page() {
         <div className="flex  gap-4 flex-wrap items-center mt-4  ">
           {projects.map((project) => (
             <div
-              className=" grow p-3 mx-1"
+              className="max-w-80 grow p-3 mx-1"
               key={project.id}
             >
               <Link href={`/project/${project.id}`}>

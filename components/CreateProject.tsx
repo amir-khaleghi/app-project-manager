@@ -37,7 +37,7 @@ const CreateProject = () => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         overlayClassName="bg-[rgba(0,0,0,.4)] flex justify-center items-center absolute top-0 left-0 h-screen w-screen"
-        className="w-3/4 bg-white rounded-xl p-8 "
+        className="w-1/4 bg-white rounded-xl p-8 "
       >
         <h1 className="text-3xl mb-6">New Project</h1>
         <form
