@@ -15,7 +15,7 @@ export default async function handler(
       ownerId: user.id,
     },
   });
-  revalidatePath('/home');
+  // revalidatePath('/home');
 
   res.json({ data: { message: 'hi' } });
 }
