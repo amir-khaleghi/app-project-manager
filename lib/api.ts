@@ -1,3 +1,5 @@
+import { revalidatePath } from 'next/cache';
+
 export const fetcher = async ({ url, method, body, json = true }) => {
   const res = await fetch(url, {
     method,
@@ -33,11 +35,14 @@ export const signin = (user) => {
 };
 
 /* New Project ---------------------- */
+
 export const createNewProject = async (name) => {
-  return fetcher({
+  const data = await fetcher({
     url: '/api/project',
     method: 'POST',
     body: { name },
     json: true,
   });
+
+  revalidatePath('/home');
 };
