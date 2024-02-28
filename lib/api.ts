@@ -45,4 +45,6 @@ export const createNewProject = async (name) => {
   });
 
   revalidatePath('/home');
+
+  return data;
 };
