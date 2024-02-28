@@ -5,7 +5,6 @@ import ProjectCard from '@/components/ProjectCard';
 import TasksList from '@/components/TasksList';
 import { getUserFromCookie } from '@/lib/auth';
 import { db } from '@/lib/db';
-import { delay } from '@/lib/delay';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { Suspense } from 'react';
