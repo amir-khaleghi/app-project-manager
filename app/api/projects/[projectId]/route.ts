@@ -9,9 +9,12 @@ interface contextProps {
 
 // ─── Delete Data ──────────────────────────────────── 🟩 ─
 
-export async function DELETE(req: NextRequest, context: contextProps) {
+export async function DELETE(req: Request, context: any) {
   try {
     const { params } = context;
+
+    console.log('🟩 // DELETE // params:', params);
+
     await db.project.delete({
       where: {
         id: params.projectId,
@@ -32,14 +35,15 @@ export async function PATCH(req: Request, context: contextProps) {
   try {
     const { params } = context;
     const body = await req.json();
-    await db.post.update({
+
+    await db.project.update({
       where: {
         id: params.id,
       },
       data: {
         name: body.name,
-        content: body.content,
-        tagId: body.tag,
+        description: body.description,
+        id: body.id,
       },
     });
     return NextResponse.json(

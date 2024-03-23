@@ -13,7 +13,7 @@ Modal.setAppElement('#modal');
 
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
-const DeleteProject = ({ id, className }) => {
+const DeleteProject = ({ id }) => {
   const router = useRouter();
   const [modalIsOpen, setIsOpen] = useState(false);
   const openModal = () => setIsOpen(true);
