@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { jwtVerify } from 'jose';
 const PUBLIC_FILE = /\.(.*)$/;
 
@@ -12,7 +12,7 @@ const verifyJWT = async (jwt) => {
   return payload;
 };
 
-export default async function middleware(req, res) {
+export default async function middleware(req: NextRequest, res: NextResponse) {
   const { pathname } = req.nextUrl;
   if (
     pathname.startsWith('/_next') ||
@@ -26,7 +26,7 @@ export default async function middleware(req, res) {
   }
 
   const jwt = req.cookies.get(process.env.COOKIE_NAME);
-
+  console.log('this is the jwt in middle:', jwt);
   if (!jwt) {
     req.nextUrl.pathname = '/signin';
     return NextResponse.redirect(req.nextUrl);

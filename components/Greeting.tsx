@@ -18,14 +18,14 @@ const Greeting = async () => {
   // ─── Return ──────────────────────────────────────────────
 
   return (
-    <Card className="w-full p-4 mx-4 relative">
+    <Card className="w-full p-4  relative">
       <div className="mb-4 ">
         <h1 className="text-3xl text-gray-700 font-bold mb-4">
           Hello, {user?.firstName}!
         </h1>
-        <h4 className="text-xl text-gray-400">
+        <h1 className="text-lg text-black/50">
           Check your daily tasks and schedule
-        </h4>
+        </h1>
       </div>
       <div>
         <Button

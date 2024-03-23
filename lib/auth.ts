@@ -3,7 +3,17 @@ import { SignJWT, jwtVerify } from 'jose';
 import { db } from './db';
 
 /* Hash Password -------------------- */
-export const hashPassword = (password) => bcrypt.hash(password, 10);
+export const hashPassword = async (password) => {
+  try {
+    const saltRounds = 10;
+    const salt = await bcrypt.genSalt(saltRounds); // Generate salt
+    const hashedPassword = await bcrypt.hash(password, salt); // Hash the password
+    return hashedPassword; // Return the hashed password
+  } catch (error) {
+    console.error('Error hashing password:', error);
+    throw error; // Throw the error for handling elsewhere
+  }
+};
 
 /* Compare Pass --------------------- */
 
@@ -47,7 +57,7 @@ export const getUserFromCookie = async (cookies) => {
 
     const { id } = await validateJWT(jwt.value);
 
-    const user = await db.user.findUnique({
+    const user = await db.user?.findUnique({
       where: {
         id,
       },

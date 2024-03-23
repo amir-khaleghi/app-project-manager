@@ -4,6 +4,8 @@ import { TASK_STATUS } from '@prisma/client';
 import { cookies } from 'next/headers';
 import Button from './Button';
 import Card from './Card';
+import DeleteProject from './DeleteProject';
+import CreateTask from './CreatTask';
 
 /* Get Data ------------------------- */
 const getData = async () => {
@@ -26,26 +28,27 @@ const getData = async () => {
 };
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
-const TasksList = async ({ title, tasks }) => {
+const TasksList = async ({ title, tasks, id }) => {
+  /* delete Project -------------------------- */
+
   // get data from prop or data base
   const data = tasks || (await getData());
 
   // ─── Retrun ──────────────────────────────────────────────
 
   return (
-    <Card className="p-8 mx-4 ">
-      <div className="flex justify-between items-center gap-8">
+    <Card className="p-8 ">
+      <div className="flex justify-between items-center gap-4 pt-4">
         <div>
           <span className="text-3xl text-gray-600">{title}</span>
         </div>
-        <div>
-          <Button
-            intent="text"
-            className="text-violet-600"
-          >
-            + Create New
-          </Button>
-        </div>
+        {/* <Button
+          intent="text"
+          className="text-violet-600"
+        >
+          + Create New
+        </Button> */}
+        <CreateTask id={id} />
       </div>
       <div>
         {data && data.length ? (

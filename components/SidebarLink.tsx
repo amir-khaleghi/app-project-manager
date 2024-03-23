@@ -1,11 +1,10 @@
 'use client';
 import Link from 'next/link';
-import { Settings, User, Grid, Calendar } from 'react-feather';
+import { Cog, User, LayoutGrid, CalendarDays } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 
-const icons = { Settings, User, Grid, Calendar };
-
+const icons = { Cog, User, LayoutGrid, CalendarDays };
 const SidebarLink = ({ link }) => {
   const pathname = usePathname();
   let isActive = false;

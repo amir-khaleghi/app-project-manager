@@ -1,18 +1,17 @@
 import Card from './Card';
 import Image from 'next/image';
 import SidebarLink from './SidebarLink';
-
 const links = [
-  { label: 'Home', icon: 'Grid', link: '/home' },
+  { label: 'Home', icon: 'LayoutGrid', link: '/home' },
   {
     label: 'Calendar',
-    icon: 'Calendar',
+    icon: 'CalendarDays',
     link: '/calendar',
   },
   { label: 'Profile', icon: 'User', link: '/profile' },
   {
     label: 'Settings',
-    icon: 'Settings',
+    icon: 'Cog',
     link: '/settings',
   },
 ];

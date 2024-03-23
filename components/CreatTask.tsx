@@ -13,40 +13,41 @@ Modal.setAppElement('#modal');
 
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
-const CreateProject = () => {
+const CreateTask = ({ id }) => {
   const router = useRouter();
   const [modalIsOpen, setIsOpen] = useState(false);
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
   const [name, setName] = useState('');
 
-  const { mutate: createProject, isPending } = useMutation({
+  const { mutate: newTask, isPending } = useMutation({
     mutationFn: (name) => {
-      return axios.post('/api/projects/create', { name });
+      console.log(name);
+      return axios.post(`/api/tasks/${id}`, { name });
     },
     onError: (error) => {
-      console.log('We have error in mutation', error);
+      console.log('We have error in mutation', error.message);
     },
     onSuccess: () => {
-      // router.push('/');
+      // router.push('/home/');
       router.refresh();
     },
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    createProject(name);
+    newTask(name);
     closeModal();
   };
 
   return (
     <div className="px-6 py-8  hover:scale-105 transition-all ease-in-out duration-200 flex justify-center items-center ">
       <Button
-        intent="primary"
-        size="large"
+        intent="secondary"
+        size="medium"
         onClick={() => openModal()}
       >
-        + New Project
+        + New Task
       </Button>
 
       <Modal
@@ -55,7 +56,7 @@ const CreateProject = () => {
         overlayClassName="bg-[rgba(0,0,0,.4)] flex justify-center items-center absolute top-0 left-0 h-screen w-screen"
         className="w-3/4 bg-white rounded-xl p-8 "
       >
-        <h1 className="text-3xl mb-6">New Project</h1>
+        <h1 className="text-3xl mb-6">New Task</h1>
         <form
           className="flex items-center gap-4"
           onSubmit={handleSubmit}
@@ -86,4 +87,4 @@ const CreateProject = () => {
     </div>
   );
 };
-export default CreateProject;
+export default CreateTask;

@@ -1,13 +1,14 @@
 'use client';
 // ─── Imports ──────────────────────────────────────── 🟩 ─
 
-import { register, signin } from '@/lib/api';
+import { register, signin } from '@/lib/actions';
 import { useCallback, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Card from './Card';
 import Button from './Button';
 import Input from './Input';
+import axios from 'axios';
 
 /* Mode Objects --------------------- */
 const registerContent = {
@@ -41,9 +42,11 @@ const AuthForm = ({ mode }: { mode: 'register' | 'signin' }) => {
 
       try {
         if (mode === 'register') {
-          await register(formState);
+          await axios.post('/api/register', { formState });
+          // await register(formState);
         } else {
-          await signin(formState);
+          await axios.post('/api/signin', { formState });
+          // await signin(formState);
         }
         //NOTE    replace prevent from backing to firs route
         router.replace('/home');
