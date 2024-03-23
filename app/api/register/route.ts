@@ -1,6 +1,5 @@
 import { createJWT, hashPassword } from '@/lib/auth';
 import { db } from '@/lib/db';
-import { NextApiRequest, NextApiResponse } from 'next';
 
 import { serialize } from 'cookie';
 import { NextResponse } from 'next/server';
@@ -34,28 +33,5 @@ export async function POST(req: Request, res: Response) {
     path: '/',
   });
 
-  // return new Response('Hello, Next.js!', {
-  //   status: 200,
-  //   headers: { 'Set-Cookie': `token=${token}` },
-  // });
-
-  // setting the cookies when the browser response back
-  // res.setHeader(
-  //   'Set-Cookie',
-  //   serialize(process.env.COOKIE_NAME, jwt, {
-  //     // can not access to cookies
-  //     httpOnly: true,
-  //     path: '/',
-  //     maxAge: 60 * 60 * 24 * 7,
-  //   })
-  // );
-
   return NextResponse.json(201);
 }
-
-//why not local storage?
-/**
- * different resposibility
- * no access to localstorage beacuse localstorage is client side
- * cookies get sent in every request
- */
