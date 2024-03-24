@@ -36,6 +36,7 @@ const CreateProject = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     createProject(name);
+    setName('');
     closeModal();
   };
 

@@ -1,3 +1,4 @@
+import { validateJWT } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -5,6 +6,42 @@ interface contextProps {
   params: {
     id: string;
   };
+}
+
+// ─── Create task ──────────────────────────────────── 🟩 ─
+
+export async function POST(req: NextRequest, context: any) {
+  const { params } = context;
+
+  try {
+    /* Get Body --------------------- */
+    const body = await req.json();
+
+    /* get user  ------------------ */
+    const user = await validateJWT(
+      req.cookies.get(process.env.COOKIE_NAME)?.value
+    );
+
+    /* Create Project --------------- */
+    const project = await db.task.create({
+      data: {
+        name: body.name,
+        ownerId: user.id,
+        projectId: params.projectId,
+      },
+    });
+    // ──────────────────────────────────────────────────── 🟩 ─
+
+    return NextResponse.json(project, { status: 200 });
+  } catch (error) {
+    // ─── Error handling ───────────────────────────── 🟩 ─
+
+    console.error('Error creating project:', error);
+    return NextResponse.json(
+      { message: 'Could not create project' },
+      { status: 500 }
+    );
+  }
 }
 
 // ─── Delete Data ──────────────────────────────────── 🟩 ─

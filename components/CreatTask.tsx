@@ -21,9 +21,8 @@ const CreateTask = ({ id }) => {
   const [name, setName] = useState('');
 
   const { mutate: newTask, isPending } = useMutation({
-    mutationFn: (name) => {
-      console.log(name);
-      return axios.post(`/api/tasks/${id}`, { name });
+    mutationFn: () => {
+      return axios.post(`/api/projects/${id}`, { name });
     },
     onError: (error) => {
       console.log('We have error in mutation', error.message);
@@ -36,19 +35,31 @@ const CreateTask = ({ id }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    newTask(name);
+    await newTask(name);
+    setName('');
     closeModal();
   };
 
   return (
-    <div className="px-6 py-8  hover:scale-105 transition-all ease-in-out duration-200 flex justify-center items-center ">
-      <Button
-        intent="secondary"
-        size="medium"
-        onClick={() => openModal()}
-      >
-        + New Task
-      </Button>
+    <div className=" py-8  hover:scale-105 transition-all ease-in-out duration-200 flex justify-center items-center ">
+      {isPending ? (
+        <Button
+          className="w-40 items-center justify-center flex"
+          intent="secondary"
+          size="medium"
+        >
+          <div className="loader2"></div>
+        </Button>
+      ) : (
+        <Button
+          className="w-40"
+          intent="secondary"
+          size="medium"
+          onClick={() => openModal()}
+        >
+          + New Task
+        </Button>
+      )}
 
       <Modal
         isOpen={modalIsOpen}

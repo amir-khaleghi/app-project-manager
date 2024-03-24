@@ -6,6 +6,7 @@ import Button from './Button';
 import Card from './Card';
 import DeleteProject from './DeleteProject';
 import CreateTask from './CreatTask';
+import TaskItem from './TaskItem';
 
 /* Get Data ------------------------- */
 const getData = async () => {
@@ -50,29 +51,7 @@ const TasksList = async ({ title, tasks, id }) => {
         </Button> */}
         <CreateTask id={id} />
       </div>
-      <div>
-        {data && data.length ? (
-          <div>
-            {data.map((task) => (
-              <div
-                className="py-2 "
-                key={task.id}
-              >
-                <div>
-                  <span className="text-gray-800">{task.name}</span>
-                </div>
-                <div>
-                  <span className="text-gray-400 text-sm">
-                    {task.description}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div>no tasks</div>
-        )}
-      </div>
+      <TaskItem data={data} />
     </Card>
   );
 };
