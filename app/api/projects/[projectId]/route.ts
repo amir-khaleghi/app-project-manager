@@ -50,8 +50,16 @@ export async function DELETE(req: Request, context: any) {
   try {
     const { params } = context;
 
-    console.log('🟩 // DELETE // params:', params);
+    // console.log('🟩 // DELETE // params:', params);
 
+    // Delete all tasks associated with the project
+    await db.task.deleteMany({
+      where: {
+        projectId: params.projectId,
+      },
+    });
+
+    // delete the project
     await db.project.delete({
       where: {
         id: params.projectId,
@@ -59,8 +67,9 @@ export async function DELETE(req: Request, context: any) {
     });
     return NextResponse.json(null, { status: 200 });
   } catch (error) {
+    console.error('Error deleting project:', error);
     return NextResponse.json(
-      { message: 'Post Can not be deleted!!💥' },
+      { message: 'Project deletion failed.' },
       { status: 500 }
     );
   }

@@ -86,15 +86,13 @@ export async function PATCH(req: Request, context: contextProps) {
 export async function GET(req: Request, context: contextProps) {
   try {
     const { params } = context;
-    const post = await db.post.findFirst({
+    const tasks = await db.task.findFirst({
       where: {
-        id: params.id,
-      },
-      include: {
-        tag: true,
+        projectId: params.id,
       },
     });
-    return NextResponse.json(post, { status: 200 });
+
+    return NextResponse.json(tasks, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       { message: 'could not Create post!!💥' },

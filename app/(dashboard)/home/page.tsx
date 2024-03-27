@@ -2,7 +2,7 @@ import CreateProject from '@/components/CreateProject';
 import Greeting from '@/components/Greeting';
 import GreetingsSkeleton from '@/components/GreetingSkeleton';
 import ProjectCard from '@/components/ProjectCard';
-import TasksList from '@/components/TasksList';
+import TaskParent from '@/components/TaskParent';
 import { getUserFromCookie } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
@@ -26,11 +26,17 @@ async function getData() {
   return projects;
 }
 
+/* Get Todays Tasks ----------------- */
+//TODO
+
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
 export default async function Page() {
   /* Get Data ----------------------- */
   const projects = await getData();
+
+  // ─── Return ──────────────────────────────────────────────
+
   return (
     <div className="h-full overflow-y-auto overflow-x-hidden w-full">
       <div className=" h-full flex flex-col justify-between min-h-[content]">
@@ -55,7 +61,7 @@ export default async function Page() {
           </div>
         </div>
         <div className="w-full rounded-3xl">
-          <TasksList />
+          <TaskParent title="Today's Tasks" />
         </div>
       </div>
     </div>

@@ -7,14 +7,16 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request, res: NextApiResponse) {
   const body = await req.json();
-  console.log('this is the bosy', body);
+  // console.log('this is the bosy', body);
   const user = await db.user.findUnique({
     where: {
-      email: body.formState.email,
+      email: body?.formState?.email,
     },
   });
 
   const isUser = await comparePassword(body.formState.password, user?.password);
+
+  // console.log('🟩 // POST // isUser:', isUser);
 
   if (isUser) {
     const jwt = await createJWT(user?.password);

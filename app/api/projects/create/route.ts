@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     const user = await validateJWT(
       req.cookies.get(process.env.COOKIE_NAME)?.value
     );
-    console.log('this is the user', user);
+    // console.log('this is the user', user);
 
     /* Create Project --------------- */
     const project = await db.project.create({

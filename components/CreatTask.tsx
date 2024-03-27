@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Modal from 'react-modal';
 import Button from './Button';
 import Input from './Input';
@@ -16,6 +16,7 @@ Modal.setAppElement('#modal');
 const CreateTask = ({ id }) => {
   const router = useRouter();
   const [modalIsOpen, setIsOpen] = useState(false);
+  const taskInput = useRef(null);
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
   const [name, setName] = useState('');
@@ -28,7 +29,7 @@ const CreateTask = ({ id }) => {
       console.log('We have error in mutation', error.message);
     },
     onSuccess: () => {
-      // router.push('/home/');
+      router.push(`/project/${id}`);
       router.refresh();
     },
   });
@@ -73,6 +74,8 @@ const CreateTask = ({ id }) => {
           onSubmit={handleSubmit}
         >
           <Input
+            ref={taskInput}
+            required
             placeholder="project name"
             value={name}
             onChange={(e) => setName(e.target.value)}

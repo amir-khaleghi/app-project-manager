@@ -8,7 +8,7 @@ import { cookies } from 'next/headers';
 /* Register Api --------------------- */
 export async function POST(req: Request, res: Response) {
   const body = await req.json();
-  console.log('this is the body', body);
+  // console.log('this is the body', body);
   const user = await db.user.create({
     data: {
       email: body.formState.email,

@@ -12,8 +12,11 @@
     "seed": "ts-node -P tsconfig-seed.json -r tsconfig-paths/register --transpileOnly prisma/seed.ts"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.1.0",
+    "@dnd-kit/sortable": "^8.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@prisma/client": "4.6.1",
-    "@tanstack/react-query": "^5.28.6",
+    "@tanstack/react-query": "^5.28.8",
     "@types/react-modal": "^3.16.3",
     "axios": "^1.6.8",
     "bcrypt": "^5.1.0",
@@ -25,7 +28,6 @@
     "lucide-react": "^0.360.0",
     "next": "14.1.0",
     "react": "^18",
-    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18",
     "react-feather": "2.0.10",
     "react-modal": "^3.16.1"
