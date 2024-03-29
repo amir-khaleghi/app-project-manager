@@ -1,8 +1,17 @@
 'use client';
-import { closestCorners, DndContext } from '@dnd-kit/core';
+import {
+  closestCorners,
+  DndContext,
+  KeyboardSensor,
+  PointerSensor,
+  TouchSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
 import {
   arrayMove,
   SortableContext,
+  sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { Task } from '@prisma/client';
@@ -40,6 +49,15 @@ const TaskColumn = ({ data, title, color }: TaskColumnProps) => {
     });
   };
 
+  /* Sensor --------------------------- */
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(TouchSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
   // ─── Return ──────────────────────────────────────────────
 
   return (
@@ -52,6 +70,7 @@ const TaskColumn = ({ data, title, color }: TaskColumnProps) => {
       <DndContext
         onDragEnd={handleDragEnd}
         collisionDetection={closestCorners}
+        sensors={sensors}
       >
         <div className="w-full p-4 ">
           <SortableContext

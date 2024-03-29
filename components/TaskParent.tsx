@@ -44,7 +44,7 @@ const TaskParent = async ({ tasks, title, id }: TaskParentProps) => {
         <span className="text-3xl text-gray-600">{title}</span>
       </div>
       <TaskContainer
-        tasks={tasks}
+        data={tasks}
         id={id}
       />
     </Card>

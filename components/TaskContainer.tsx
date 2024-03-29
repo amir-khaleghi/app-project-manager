@@ -5,32 +5,48 @@ import CreateTask from './CreatTask';
 import TaskColumn from './TaskColumn';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useDroppable } from '@dnd-kit/core';
 
 type TaskColumnProps = {
-  tasks: Task[];
+  data: Task[];
   id: string;
 };
 
-const TaskContainer = ({ tasks, id }: TaskColumnProps) => {
-  /* Handler ------------------------ */
+// ─── Comp ─────────────────────────────────────────── 🟩 ─
 
-  const { mutate: updatedTasks, isPending } = useMutation({
-    mutationFn: (updatedPost) => {
-      return axios.patch(`/api/posts/${id}`, updatedPost);
-    },
-    onError: (error) => {
-      console.log('We have error in mutation', error);
-    },
-    onSuccess: () => {
-      router.push(`/`);
-      router.refresh();
-    },
+const TaskContainer = ({ data, id }: TaskColumnProps) => {
+  /* State ---------------------------- */
+  const [tasks, setTask] = useState(data);
+
+  useEffect(() => {
+    setTask(data);
+  }, [data]);
+  /* Droppable ---------------------- */
+  const { setNodeRef: setTodo } = useDroppable({
+    id: 'todo',
   });
+
+  const { setNodeRef: setInProgress } = useDroppable({
+    id: 'in-progress',
+  });
+  const { setNodeRef: setDone } = useDroppable({
+    id: 'done',
+  });
+  /* Handler ------------------------ */
+  const handleTaskMove = (taskId: string, destinationColumn: string) => {
+    setTask((prevTasks) => {
+      return prevTasks.map((task) => {
+        if (task.id === taskId) {
+          return { ...task, column: destinationColumn };
+        }
+        return task;
+      });
+    });
+  };
 
   /* Filter ------------------------- */
   const todoTasks = tasks?.filter((task) => task.status === 'NOT_STARTED');
-
-  // console.log('🟩 // TaskContainer // todoTasks:', todoTasks);
   const inProgressTasks = tasks?.filter((task) => task.status === 'STARTED');
   const doneTasks = tasks?.filter((task) => task.status === 'COMPLETED');
 
@@ -46,6 +62,8 @@ const TaskContainer = ({ tasks, id }: TaskColumnProps) => {
               data={todoTasks}
               title="Todo"
               color="gray"
+              onTaskMove={handleTaskMove}
+              droppableRef={setTodo}
             />
             {/*//ANCHOR  In Progress
              */}
@@ -53,12 +71,16 @@ const TaskContainer = ({ tasks, id }: TaskColumnProps) => {
               data={inProgressTasks}
               title="In Progress"
               color="blue"
+              onTaskMove={handleTaskMove}
+              droppableRef={setInProgress}
             />
             {/*//ANCHOR done */}
             <TaskColumn
               data={doneTasks}
               title="Done"
               color="green"
+              onTaskMove={handleTaskMove}
+              droppableRef={setDone}
             />
           </>
         ) : (
