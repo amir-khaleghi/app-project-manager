@@ -61,7 +61,7 @@ const TaskColumn = ({ data, title, color }: TaskColumnProps) => {
   // ─── Return ──────────────────────────────────────────────
 
   return (
-    <div className="flex flex-col gap-2 w-80 items-center border rounded-lg bg-gray-50">
+    <div className="flex flex-col gap-2 w-full items-center border rounded-lg bg-gray-50">
       <h1
         className={`w-full bg-${color}-300 rounded-md shadow-md font-mono font-bold  items-center justify-center flex p-2 mb-4 `}
       >
@@ -72,7 +72,7 @@ const TaskColumn = ({ data, title, color }: TaskColumnProps) => {
         collisionDetection={closestCorners}
         sensors={sensors}
       >
-        <div className="w-full p-4 ">
+        <div className="w-full p-4  touch-none">
           <SortableContext
             items={tasks}
             strategy={verticalListSortingStrategy}
