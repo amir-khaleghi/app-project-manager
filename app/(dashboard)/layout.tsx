@@ -8,6 +8,7 @@ const DashboardLayout = ({ children }) => {
       <head />
       <body className=" h-screen w-screen overflow-hidden  flex items-center justify-center p-2 sm:p-10 md:p-20   font-sans">
         <div className="absolute left-0 top-0  w-screen h-full left-mesh bounce-left"></div>
+        <div className="absolute left-0 top-0  w-screen h-full right-mesh bounce-right"></div>
 
         <Provider>
           <div className="w-full h-full flex items-center justify-start gap-2 rounded-3xl  border ">

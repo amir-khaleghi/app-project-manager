@@ -54,7 +54,7 @@ const TaskContainer = ({ data, id }: TaskColumnProps) => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-col md:flex-row justify-center items-start w-full  gap-4">
+      <div className="flex flex-col md:flex-row justify-center items-start w-full  gap-4  ">
         {tasks && tasks.length ? (
           <>
             {/*//ANCHOR Todo */}
