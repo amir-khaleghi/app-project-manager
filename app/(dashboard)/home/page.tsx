@@ -1,7 +1,9 @@
+import Card from '@/components/Card';
 import CreateProject from '@/components/CreateProject';
 import Greeting from '@/components/Greeting';
 import GreetingsSkeleton from '@/components/GreetingSkeleton';
 import ProjectCard from '@/components/ProjectCard';
+import TaskContainer from '@/components/TaskContainer';
 import TaskParent from '@/components/TaskParent';
 import { getUserFromCookie } from '@/lib/auth';
 import { db } from '@/lib/db';
@@ -27,6 +29,19 @@ async function getData() {
 }
 
 /* Get Todays Tasks ----------------- */
+/* Get Data ------------------------- */
+async function getTodaysTasks() {
+  const user = await getUserFromCookie(cookies());
+  const todaysTasks = await db.task?.findMany({
+    where: {
+      ownerId: user?.id,
+    },
+    take: 5,
+  });
+
+  revalidatePath('/home');
+  return todaysTasks;
+}
 //TODO
 
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
@@ -34,6 +49,7 @@ async function getData() {
 export default async function Page() {
   /* Get Data ----------------------- */
   const projects = await getData();
+  const todaysTasks = await getTodaysTasks();
 
   // ─── Return ──────────────────────────────────────────────
 
@@ -61,7 +77,12 @@ export default async function Page() {
           </div>
         </div>
         <div className="w-full rounded-3xl">
-          <TaskParent title="Today's Tasks" />
+          <Card>
+            <TaskContainer
+              data={todaysTasks}
+              title="Today's Tasks"
+            />
+          </Card>
         </div>
       </div>
     </div>

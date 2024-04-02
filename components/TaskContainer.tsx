@@ -10,7 +10,7 @@ import { useDroppable } from '@dnd-kit/core';
 
 type TaskColumnProps = {
   data: Task[];
-  id: string;
+  id?: string;
 };
 
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
@@ -87,7 +87,6 @@ const TaskContainer = ({ data, id }: TaskColumnProps) => {
           <div>no tasks</div>
         )}
       </div>
-      <CreateTask id={id} />
     </div>
   );
 };

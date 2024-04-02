@@ -4,6 +4,7 @@ import { cookies } from 'next/headers';
 import { Task } from '@prisma/client';
 import Card from './Card';
 import TaskContainer from './TaskContainer';
+import CreateTask from './CreatTask';
 
 /* Get Data ------------------------- */
 // const getData = async () => {
@@ -43,10 +44,8 @@ const TaskParent = async ({ tasks, title, id }: TaskParentProps) => {
       <div className="flex justify-center w-full items-center  pb-6">
         <span className="text-3xl text-gray-600">{title}</span>
       </div>
-      <TaskContainer
-        data={tasks}
-        id={id}
-      />
+      <TaskContainer data={tasks} />
+      <CreateTask id={id} />
     </Card>
   );
 };
