@@ -27,9 +27,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/(dashboard)/not-found.js",
+    "app/(dashboard)/not-found.jsx",
     "app/(auth)/not-found.js",
-    "app/not-found.js"
+    "app/(dashboard)/not-found.jsx"
   ],
   "exclude": ["node_modules"]
 }

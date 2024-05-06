@@ -60,10 +60,10 @@ export default async function Page() {
             <Greeting />
           </Suspense>
         </div>
-        <div className="flex flex-wrap items-center justify-around gap-2 mt-4 ">
+        <div className="grid items-start justify-start grid-cols-1 gap-2 mt-4 mb-10 md:grid-cols-2 lg:grid-cols-3">
           {projects?.map((project) => (
             <div
-              className="w-60 grow "
+              className=""
               key={project.id}
             >
               <Link href={`/project/${project.id}`}>
@@ -76,7 +76,7 @@ export default async function Page() {
           </div>
         </div>
         <div className="w-full rounded-3xl">
-          <Card>
+          <Card className="">
             <TaskContainer
               data={todaysTasks}
               title="Today's Tasks"

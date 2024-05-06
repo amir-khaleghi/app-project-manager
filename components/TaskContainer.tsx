@@ -1,10 +1,7 @@
 'use client';
 
 import { Task } from '@prisma/client';
-import CreateTask from './CreatTask';
 import TaskColumn from './TaskColumn';
-import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 
@@ -54,7 +51,7 @@ const TaskContainer = ({ data, id }: TaskColumnProps) => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-col md:flex-row justify-center items-start w-full  gap-4  ">
+      <div className="flex flex-col items-start justify-center w-full gap-4 md:flex-row ">
         {tasks && tasks.length ? (
           <>
             {/*//ANCHOR Todo */}

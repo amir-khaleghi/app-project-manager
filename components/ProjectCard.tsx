@@ -30,7 +30,7 @@ const ProjectCard: FC<{ project: ProjectWithTasks }> = ({ project }) => {
   // ─── Return ──────────────────────────────────────────────
 
   return (
-    <Card className="p-6  hover:scale-95 transition-all ">
+    <Card className="p-6 transition-all hover:bg-green-50 ">
       <div>
         <span className="text-sm text-gray-300">
           {formatDate(project.createdAt)}
@@ -45,32 +45,26 @@ const ProjectCard: FC<{ project: ProjectWithTasks }> = ({ project }) => {
         </span>
       </div>
       <div>
-        <div className="w-full h-2 bg-violet-200 rounded-full mb-2">
+        <div className="w-full h-2 mb-2 rounded-full bg-violet-200">
           {progress <= 30 ? (
             <div
-              className={clsx(
-                'h-full text-center text-xs text-white bg-red-600 rounded-full'
-              )}
+              className="h-full text-xs text-center text-white bg-red-600 rounded-full"
               style={{ width: `${progress}%` }}
             ></div>
           ) : progress > 30 && progress <= 70 ? (
             <div
-              className={clsx(
-                'h-full text-center text-xs text-white bg-yellow-500 rounded-full'
-              )}
+              className="h-full text-xs text-center text-white bg-yellow-500 rounded-full"
               style={{ width: `${progress}%` }}
             ></div>
           ) : (
             <div
-              className={clsx(
-                'h-full text-center text-xs text-white bg-green-600 rounded-full'
-              )}
+              className="h-full text-xs text-center text-white bg-green-600 rounded-full"
               style={{ width: `${progress}%` }}
             ></div>
           )}
         </div>
         <div className="text-right">
-          <span className="text-sm text-gray-600 font-semibold">
+          <span className="text-sm font-semibold text-gray-600">
             {progress}%
           </span>
         </div>
