@@ -31,11 +31,11 @@
   background-color: transparent;
   background-image: radial-gradient(
       at 20% 20%,
-      rgb(255, 148, 82) 0px,
+      rgb(227, 247, 255) 0px,
       transparent 70%
     ),
     radial-gradient(at 20% 20%, rgb(0, 255, 157) 0px, transparent 70%),
-    radial-gradient(at 10% 20%, rgb(255, 213, 130) 0px, transparent 70%);
+    radial-gradient(at 10% 20%, rgb(137, 255, 251) 0px, transparent 70%);
 }
 .right-mesh {
   background-color: transparent;

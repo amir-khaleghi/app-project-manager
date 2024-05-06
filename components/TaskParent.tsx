@@ -40,8 +40,8 @@ const TaskParent = async ({ tasks, title, id }: TaskParentProps) => {
   // ─── Retrun ──────────────────────────────────────────────
 
   return (
-    <Card className="p-8">
-      <div className="flex justify-center w-full items-center  pb-6">
+    <Card className="h-full p-4">
+      <div className="flex items-center justify-center w-full pb-6">
         <span className="text-3xl text-gray-600">{title}</span>
       </div>
       <TaskContainer data={tasks} />

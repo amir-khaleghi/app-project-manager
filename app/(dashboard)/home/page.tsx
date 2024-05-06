@@ -4,7 +4,6 @@ import Greeting from '@/components/Greeting';
 import GreetingsSkeleton from '@/components/GreetingSkeleton';
 import ProjectCard from '@/components/ProjectCard';
 import TaskContainer from '@/components/TaskContainer';
-import TaskParent from '@/components/TaskParent';
 import { getUserFromCookie } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
@@ -54,14 +53,14 @@ export default async function Page() {
   // ─── Return ──────────────────────────────────────────────
 
   return (
-    <div className="h-full overflow-y-auto overflow-x-hidden w-full">
+    <div className="w-full h-full overflow-x-hidden overflow-y-auto">
       <div className=" h-full flex flex-col justify-between min-h-[content]">
-        <div className="w-full grow flex">
+        <div className="flex w-full grow">
           <Suspense fallback={<GreetingsSkeleton />}>
             <Greeting />
           </Suspense>
         </div>
-        <div className="flex  gap-2 flex-wrap items-center mt-4  justify-around ">
+        <div className="flex flex-wrap items-center justify-around gap-2 mt-4 ">
           {projects?.map((project) => (
             <div
               className="w-60 grow "

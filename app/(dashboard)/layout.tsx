@@ -6,12 +6,11 @@ const DashboardLayout = ({ children }) => {
   return (
     <html lang="en">
       <head />
-      <body className=" h-screen w-screen overflow-hidden  flex items-center justify-center p-2 sm:p-10 md:p-20   font-sans">
-        <div className="absolute left-0 top-0  w-screen h-full left-mesh bounce-left"></div>
-        <div className="absolute left-0 top-0  w-screen h-full right-mesh bounce-right"></div>
-
+      <div className="absolute top-0 left-0 w-screen h-full left-mesh bounce-left -z-10"></div>
+      {/* <div className="absolute top-0 left-0 w-screen h-full right-mesh bounce-right -z-10"></div> */}
+      <body className="z-20 flex items-center justify-center w-screen h-screen p-2 overflow-x-hidden font-sans sm:p-10 md:p-20">
         <Provider>
-          <div className="w-full h-full flex items-center justify-start gap-2 rounded-3xl  border ">
+          <div className="flex items-center justify-start w-full h-full gap-2 border rounded-3xl ">
             <Sidebar />
             {children}
           </div>
